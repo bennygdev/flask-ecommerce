@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
-    user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
     last_name = db.Column(db.String(150), nullable=False)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -18,13 +18,13 @@ class User(db.Model, UserMixin):
 
 class Role(db.Model):
     __tablename__ = 'roles'
-    role_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    role_id = db.Column(db.Integer, primary_key=True)
     role_name = db.Column(db.String(50), unique=True, nullable=False)
     users = db.relationship('User', backref='role', lazy=True)  # otm
 
 class Product(db.Model):
     __tablename__ = 'products'
-    product_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
     price = db.Column(db.Numeric(10, 2), nullable=False)
@@ -38,7 +38,7 @@ class Product(db.Model):
 
 class Order(db.Model):
     __tablename__ = 'orders'
-    order_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    order_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     order_date = db.Column(db.DateTime(timezone=True), default=func.now())
     total_amount = db.Column(db.Numeric(10, 2), nullable=False)
@@ -48,7 +48,7 @@ class Order(db.Model):
 
 class OrderItem(db.Model):
     __tablename__ = 'order_items'
-    order_item_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    order_item_id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id'), nullable=False) 
     product_id = db.Column(db.Integer, db.ForeignKey('products.product_id'), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
@@ -56,7 +56,7 @@ class OrderItem(db.Model):
 
 class Category(db.Model):
     __tablename__ = 'categories'
-    category_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    category_id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(100), unique=True, nullable=False)
 
 class ProductCategory(db.Model):
