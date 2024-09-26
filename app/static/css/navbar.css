@@ -1,0 +1,151 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.nav__left {
+  display: flex;
+  align-items: center;
+}
+
+.nav__hamburger-menu {
+  font-size: 1.5rem;
+  display: none;
+  color: var(--primary-black);
+}
+
+.nav__logo {
+  width: 140px;
+  max-width: 200px;
+}
+
+.nav__links {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 0px;
+  align-items: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  font-weight: 700;
+  color: #000000;
+  transition: 0.2s ease;
+}
+
+.nav__link--active {
+  color: blue;
+}
+
+.nav__button {
+  border: none;
+  background-color: #ff6459;
+  padding: 8px 20px 8px 20px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* Search */
+.nav__search-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  width: 55vw;
+}
+
+.nav__search-bar {
+  width: 100%;
+  padding: 8px 40px 8px 15px;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+
+.nav__search-bar.focused {
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+}
+
+.nav__search-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Sticky */
+.sticky {
+  position: fixed;
+  height: 80px;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  background-color: var(--primary-white);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: top 0.3s;
+}
+
+/* Offcanvas menu */
+.offcanvas-logo {
+  width: 140px;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.offcanvas-nav {
+  list-style-type: none;
+  font-size: 1.4rem;
+  padding: 0;
+}
+
+.offcanvas-nav a {
+  display: block;
+}
+
+.offcanvas-nav__extra {
+  margin-top: auto;
+  font-size: 0.8rem;
+  line-height: 0.7em;
+  opacity: 0.8;
+}
+
+@media (max-width: 1028px) {
+  nav {
+    padding: 10px 30px;
+  }
+
+  .nav__links {
+    justify-content: flex-end;
+    gap: 7px;
+  }
+
+  .nav__desktop {
+    display: none;
+  }
+
+  .nav__hamburger-menu {
+    display: block;
+    margin-left: auto;
+    justify-self: flex-end;
+  }
+
+  .nav__search-container {
+    width: 70vw;
+  }
+}

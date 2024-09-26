@@ -1,0 +1,43 @@
+<nav class="main__navbar">
+  <div class="nav__left">
+    <a href='/'><img src="" id="nav__logo" class="nav__logo" alt="Logo"></a>
+  </div>
+
+  <!-- Search btn  here -->
+  <div class="nav__search-container">
+    <input type="text" id="nav__search-bar" class="nav__search-bar" placeholder="Search..." autocomplete="off">
+    <i class="fa-solid fa-magnifying-glass nav__search-button" id="nav__search-button"></i>
+    <div id="nav__search--suggestions" class="nav__search--suggestions"></div>
+  </div>
+
+  <!-- Navigation links -->
+  <ul class="nav__links">
+    <li><a data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu" class="nav__link nav__hamburger-menu nav__mobile"><i class="fa-solid fa-bars"></i></a></li>
+    <li><a class='nav__link nav__link--active nav__desktop' href='/'>Home</a></li>
+    <li><a class='nav__link nav__desktop' href='/products'>Products</a></li>
+    <li><a class='nav__link nav__desktop' href='/saved'><i class="fa-regular fa-heart fa-xl saved"></i></a></li> <!-- icon -->
+    <a class="nav__link nav__desktop" href="/cart"><button class="nav__button"><i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;Cart (?)</button></a>
+  </ul>
+</nav>
+
+<!-- Offcanvas menu -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenu">
+  <div class="offcanvas-header">
+    <img src="" class="offcanvas-logo" alt="Logo">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="offcanvas-nav">
+      <li><a class='nav__link offcanvas__link--active' href='/'>Home</a></li>
+      <li><a class='nav__link' href='/products'>Products</a></li>
+      <li><a class='nav__link' href='/saved'>Saved</a></li>
+      <li><a class='nav__link' href='/cart'>Cart (?)</a></li>
+    </ul>
+    <div class="offcanvas-nav__extra">
+      <a href="privacypolicy.html"><p>Privacy Policy</p></a>
+      <a href="termsofservice.html"><p>Terms of service</p></a>
+      <a href="license.html"><p>License</p></a>
+      <p>&copy; Brand 2024</p>
+    </div>
+  </div>
+</div>
