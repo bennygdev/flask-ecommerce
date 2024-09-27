@@ -13,9 +13,9 @@
   <!-- Navigation links -->
   <ul class="nav__links">
     <li><a data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu" class="nav__link nav__hamburger-menu nav__mobile"><i class="fa-solid fa-bars"></i></a></li>
-    <li><a class='nav__link nav__link--active nav__desktop' href='/'>Home</a></li>
-    <li><a class='nav__link nav__desktop' href='/products'>Products</a></li>
-    <li><a class='nav__link nav__desktop' href='/saved'><i class="fa-regular fa-heart fa-xl saved"></i></a></li> <!-- icon -->
+    <li><a class="nav__link nav__desktop {{ 'nav__link--active' if active_page == 'home' else '' }}" href='/'>Home</a></li>
+    <li><a class="nav__link nav__desktop {{ 'nav__link--active' if active_page == 'products' else '' }}" href='/products'>Products</a></li>
+    <li><a class="nav__link nav__desktop" href='/saved'><i class="{{ 'fa-solid' if active_page == 'saved' else 'fa-regular saved' }} fa-heart fa-xl"></i></a></li> <!-- icon -->
     <a class="nav__link nav__desktop" href="/cart"><button class="nav__button"><i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;Cart (?)</button></a>
   </ul>
 </nav>
