@@ -7,7 +7,7 @@
 .register__left {
   width: 50%;
   height: 100%; 
-  background-image: url('../media/spiral_bg.jpg'); 
+  background-image: url('../media/register_bg.jpg'); 
   background-size: cover;
   background-position: center;
 }

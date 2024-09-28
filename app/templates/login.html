@@ -1,8 +1,42 @@
 {% extends "base.html" %}
-{% set active_page = "cart" %}
+{% set active_page = "login" %}
+
+{% block styles %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/login.css') }}">
+{% endblock %}
+
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
+<div class="login__wrapper">
+  <div class="login__left">
+    <!-- <img src="{{ url_for('static', filename='../static/media/spiral_bg.jpg') }}" alt=""> -->
+  </div>
+  <div class="login__right">
+    <i class="fa-solid fa-moon fa-3x login__icon"></i>
+    <h1 id="login__header">Login</h1>
+    <p id="login__subtitle">Welcome back!</p>
+    <form method="POST" class="login__form">
+      <div class="login__email">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="yourname@example.com">
+        <div class="error" id="emailError"></div>
+      </div>
+      <div class="login__password">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Your password">
+        <div class="error" id="passwordError"></div>
+      </div>
+      <p id="login__subtitle--reminder">Don't have an account? <a href="/register">Register</a></p>
+      <button type="submit" id="login__submit">Submit</button>
+    </form>
+    
+  </div>
+</div>
+
+<!-- <script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/login.js') }}"
+></script> -->
 
 {% endblock %}

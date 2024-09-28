@@ -13,6 +13,7 @@ def login():
 @auth.route('/logout')
 # @login_required
 def logout():
+  # server side validation will be used to display error msg
   return "Log out"
 
 @auth.route('/register', methods=['GET', 'POST'])
