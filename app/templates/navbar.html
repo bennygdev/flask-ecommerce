@@ -21,13 +21,16 @@
     <div class="nav__optionMenu">
       <ul class="nav__optionMenu--links">
         <!-- logged out -->
-        <li><a class="nav__optionMenu--link" href="/login">Login</a></li>
-        <li><a class="nav__optionMenu--link" href="/register">Register</a></li>
-        <!-- logged in -->
+        {% if user.is_authenticated %}
         <li><a class="nav__optionMenu--link" href="/">Your Profile</a></li>
         <li><a class="nav__optionMenu--link" href="/">My Dashboard</a></li>
         <li><a class="nav__optionMenu--link" href="/">My Orders</a></li>
-        <li><a class="nav__optionMenu--link" href="/">Log Out</a></li>
+        <li><a class="nav__optionMenu--link" href="/logout">Log Out</a></li>
+        <!-- logged in -->
+        {% else %}
+        <li><a class="nav__optionMenu--link" href="/login">Login</a></li>
+        <li><a class="nav__optionMenu--link" href="/register">Register</a></li>
+        {% endif %}
       </ul>
     </div>
   </ul>

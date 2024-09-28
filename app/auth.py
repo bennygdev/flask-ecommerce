@@ -6,15 +6,35 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
-  return render_template("login.html")
+  if request.method == 'POST':
+    emailUsername = request.form.get('emailUsername')
+    password = request.form.get('password')
+
+    # server side validation will be used to display error msg (Empty values)
+
+
+    user = User.query.filter((User.email == emailUsername) | (User.username == emailUsername)).first()
+
+    # validation (still needs server side validation for display) use flash
+    if user:
+      if check_password_hash(user.password, password):
+        print('Login success')
+        login_user(user, remember=True)
+        return redirect(url_for('views.home')) # do not redirect to dashboard for now
+    else:
+      return 'User or email does not exist'
+
+
+  return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
-# @login_required
+@login_required
 def logout():
-  # server side validation will be used to display error msg
-  return "Log out"
+  logout_user()
+  print("Logged out user")
+  return redirect(url_for('auth.login')) # switch to home
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -28,14 +48,32 @@ def register():
 
     # print(request.form)
     # server side validation
-    if (not firstName or len(firstName) < 1 or not lastName or len(lastName) < 1 or
-        not email or len(email) < 1 or not password or len(password) < 6 or 
-        password != confirmPassword or not username or len(username) < 1):
+
+    # server side validation kinda needed for duplicate email + username
+    user_exists = User.query.filter_by(email=email).first()
+    email_exists = User.query.filter_by(username=username).first()
+
+    if (user_exists or email_exists):
+      # validation needed...
+      print('Username or email already exists')
+      return 'None'
+    elif (not username or len(username) < 1 or not firstName or len(firstName) < 1 or not lastName or len(lastName) < 1 or not email or len(email) < 1 or len(password) < 6 or len(confirmPassword) < 6):
       print('invalid')
-      return
+      return 'Invalid validation'
     else:
-      # auth side not added yet
-      return redirect(url_for('views.home')) 
+      # add user to database
+      new_user = User(
+        first_name = firstName, 
+        last_name = lastName,
+        username = username,
+        email = email,
+        password = generate_password_hash(password, method='pbkdf2:sha256'),
+        role_id = 1
+      )
+      db.session.add(new_user)
+      db.session.commit()
+      print('account created successfully')
+      return redirect(url_for('views.home')) # redirect the user to login?
     
-  return render_template("register.html")
+  return render_template("register.html", user=current_user)
 
