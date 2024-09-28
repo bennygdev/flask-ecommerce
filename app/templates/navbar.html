@@ -18,6 +18,18 @@
     <li><a class="nav__link nav__desktop" href='/saved'><i class="{{ 'fa-solid' if active_page == 'saved' else 'fa-regular saved' }} fa-heart fa-xl"></i></a></li> <!-- icon -->
     <a class="nav__link nav__desktop" href="/cart"><button class="nav__button"><i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;Cart (?)</button></a>
     <div class="nav__link nav__desktop nav__profile"></div> <!-- add options menu when click -->
+    <div class="nav__optionMenu">
+      <ul class="nav__optionMenu--links">
+        <!-- logged out -->
+        <li><a class="nav__optionMenu--link" href="/login">Login</a></li>
+        <li><a class="nav__optionMenu--link" href="/register">Register</a></li>
+        <!-- logged in -->
+        <li><a class="nav__optionMenu--link" href="/">Your Profile</a></li>
+        <li><a class="nav__optionMenu--link" href="/">My Dashboard</a></li>
+        <li><a class="nav__optionMenu--link" href="/">My Orders</a></li>
+        <li><a class="nav__optionMenu--link" href="/">Log Out</a></li>
+      </ul>
+    </div>
   </ul>
 </nav>
 
