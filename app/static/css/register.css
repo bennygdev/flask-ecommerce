@@ -60,14 +60,14 @@
   gap: 5px;
 }
 
-.register__email, .register__password, .register__confirmPassword {
+.register__email, .register__password, .register__confirmPassword, .register__username {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-top: 15px;
 }
 
-.register__firstName input, .register__lastName input, .register__email input, .register__password input, .register__confirmPassword input {
+.register__firstName input, .register__lastName input, .register__email input, .register__password input, .register__confirmPassword input, .register__username input {
   border: 1px solid lightgrey;
   border-radius: 5px;
   height: 30px;
@@ -75,9 +75,18 @@
   font-size: 0.9em;
 }
 
+.register__username {
+  width: 50%;
+}
+
+.error {
+  font-size: 0.8em;
+  color: red;
+}
+
 #register__subtitle--reminder {
   color: grey;
-  font-size: 0.8em;
+  font-size: 0.75em;
   margin-top: 10px;
 }
 

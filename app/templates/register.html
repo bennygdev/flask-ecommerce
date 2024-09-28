@@ -22,23 +22,28 @@
           <div class="register__firstName">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" placeholder="First Name">
+            <div class="error" id="firstNameError"></div>
           </div>
           <div class="register__lastName">
             <label for="lastName">Last Name</label>
             <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+            <div class="error" id="lastNameError"></div>
           </div>
         </div>
         <div class="register__email">
           <label for="email">Email</label>
           <input type="email" name="email" id="email">
+          <div class="error" id="emailError"></div>
         </div>
         <div class="register__password">
           <label for="password">Password</label>
           <input type="password" name="password" id="password">
+          <div class="error" id="passwordError"></div>
         </div>
         <div class="register__confirmPassword">
           <label for="confirmPassword">Confirm Password</label>
           <input type="password" name="confirmPassword" id="confirmPassword">
+          <div class="error" id="confirmPasswordError"></div>
         </div>
         <p id="register__subtitle--reminder">Already have an account? <a href="/login">Login</a></p>
         <button type="button" id="register__next">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -48,6 +53,7 @@
         <div class="register__username">
           <label for="username">What should we call you?</label>
           <input type="text" name="username" id="username">
+          <div class="error" id="usernameError"></div>
         </div>
         <button type="submit" id="register__submit">Submit</button>
       </div>
@@ -58,7 +64,7 @@
 
 <script
   type="text/javascript"
-  src="{{ url_for('static', filename='js/formTransition.js') }}"
+  src="{{ url_for('static', filename='js/register.js') }}"
 ></script>
 
 {% endblock %}
