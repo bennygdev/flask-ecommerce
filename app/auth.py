@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import db
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,19 +12,25 @@ def login():
     emailUsername = request.form.get('emailUsername')
     password = request.form.get('password')
 
-    # server side validation will be used to display error msg (Empty values)
-
+    # client side
+    if not emailUsername or not password:
+      flash('Invalid email or password', 'error')
+      return redirect(url_for('auth.login'))
 
     user = User.query.filter((User.email == emailUsername) | (User.username == emailUsername)).first()
 
-    # validation (still needs server side validation for display) use flash
+    # validation 
     if user:
       if check_password_hash(user.password, password):
         print('Login success')
         login_user(user, remember=True)
         return redirect(url_for('views.home')) # do not redirect to dashboard for now
+      else:
+        flash('Invalid email or password', 'error')
+        return redirect(url_for('auth.login'))
     else:
-      return 'User or email does not exist'
+      flash('Invalid email or password', 'error')
+      return redirect(url_for('auth.login'))
 
 
   return render_template("login.html", user=current_user)

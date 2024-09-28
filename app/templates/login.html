@@ -20,12 +20,18 @@
       <div class="login__email">
         <label for="emailUsername">Email/Username</label>
         <input type="text" name="emailUsername" id="emailUsername" placeholder="yourname@example.com">
-        <div class="error" id="emailError"></div>
+        <!-- <div class="error" id="emailError"></div> -->
       </div>
       <div class="login__password">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="Your password">
-        <div class="error" id="passwordError"></div>
+        <div class="error" id="passwordError">
+          {% for category, message in get_flashed_messages(with_categories=true) %}
+            {% if category == 'error' %}
+              {{ message }}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
       <p id="login__subtitle--reminder">Don't have an account? <a href="/register">Register</a></p>
       <button type="submit" id="login__submit">Submit</button>
