@@ -1,8 +1,64 @@
 {% extends "base.html" %}
 {% set active_page = "cart" %}
+
+{% block styles %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/register.css') }}">
+{% endblock %}
+
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h1>Register</h1>
+<div class="register__wrapper">
+  <div class="register__left">
+    <!-- <img src="{{ url_for('static', filename='../static/media/spiral_bg.jpg') }}" alt=""> -->
+  </div>
+  <div class="register__right">
+    <i class="fa-solid fa-sun fa-3x register__icon"></i>
+    <h1 id="register__header">Register</h1>
+    <p id="register__subtitle">Let's order something amazing together.</p>
+    <form method="POST" class="register__form">
+      <div id="step1">
+        <div class="register__name">
+          <div class="register__firstName">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name">
+          </div>
+          <div class="register__lastName">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="register__email">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email">
+        </div>
+        <div class="register__password">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password">
+        </div>
+        <div class="register__confirmPassword">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword">
+        </div>
+        <p id="register__subtitle--reminder">Already have an account? <a href="/login">Login</a></p>
+        <button type="button" id="register__next">Next <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    
+      <div id="step2" class="hidden">
+        <div class="register__username">
+          <label for="username">What should we call you?</label>
+          <input type="text" name="username" id="username">
+        </div>
+        <button type="submit" id="register__submit">Submit</button>
+      </div>
+    </form>
+    
+  </div>
+</div>
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/formTransition.js') }}"
+></script>
 
 {% endblock %}

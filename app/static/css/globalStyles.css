@@ -27,7 +27,11 @@ html {
 body {
   background-color: #FFF;
   font-family: "OpenSansSemibold";
-  margin-top: 75px;
+  /* margin-top: 75px; */
+}
+
+.paddedContent {
+  /* insert default padding... move margin-top from body to here */
 }
 
 textarea:focus, input:focus{

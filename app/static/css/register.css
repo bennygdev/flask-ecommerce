@@ -1,0 +1,139 @@
+.register__wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* full viewport height */
+}
+
+.register__left {
+  width: 50%;
+  height: 100%; 
+  background-image: url('../media/spiral_bg.jpg'); 
+  background-size: cover;
+  background-position: center;
+}
+
+.register__right {
+  width: 50%;
+  background-color: #fff;
+  height: 100%; 
+  padding: 100px 50px 100px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.register__icon {
+  color: red;
+  margin-top: 100px;
+}
+
+#register__header {
+  font-family: "OpenSansBold";
+  margin-top: 30px;
+}
+
+#register__subtitle {
+  margin-top: 5px;
+  color: grey;
+}
+
+#step1 {
+  width: 75%;
+}
+
+/* .register__form {
+  width: 75%;
+} */
+
+.register__name {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+}
+
+.register__firstName, .register__lastName {
+  display: flex;
+  flex-direction: column;
+  /* width: 35%; */
+  width: 50%;
+  gap: 5px;
+}
+
+.register__email, .register__password, .register__confirmPassword {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.register__firstName input, .register__lastName input, .register__email input, .register__password input, .register__confirmPassword input {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  height: 30px;
+  padding: 20px 15px 20px 15px;
+  font-size: 0.9em;
+}
+
+#register__subtitle--reminder {
+  color: grey;
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+
+#register__next {
+  margin-top: 10px;
+  padding: 10px 20px 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+}
+
+#register__submit {
+  margin-top: 10px;
+  padding: 10px 20px 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animation classes */
+.step {
+  position: absolute;
+  width: 100%;
+  transition: transform 0.5s ease; 
+}
+
+.slide-out {
+  animation: slideOut 0.5s forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-130%); /* slide to left */
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%); /* start from the right */
+  }
+  to {
+    transform: translateX(0);
+  }
+}

@@ -84,6 +84,17 @@ nav {
   cursor: pointer;
 }
 
+/* Profile */
+.nav__profile {
+  /* background-color: grey; */
+  background-image: url(../media/profile_image_default.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
 /* Sticky */
 .sticky {
   position: fixed;
