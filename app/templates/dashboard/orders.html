@@ -1,8 +1,10 @@
-{% extends "views/base.html" %}
+{% extends "dashboard/dashboard.html" %}
 {% set active_page = "orders" %}
-{% block title %}Orders{% endblock %}
+{% block title %}My Orders{% endblock %} <!-- Change to "Manage orders" for admin and owner -->
+
 
 {% block content %}
-<h1>My Orders</h1>
+
+<h1>Orders</h1>
 
 {% endblock %}

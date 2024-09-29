@@ -1,0 +1,18 @@
+<ul class="dashboard__links">
+  <li class="links__top">
+      <ul>
+          <li><a href="/overview" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'overview' else '' }}"><i class="fa-solid fa-chart-area"></i>Overview</a></li>
+          <li><a href="/profile" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'profile' else '' }}"><i class="fa-solid fa-user"></i>My Profile</a></li>
+          <li><a href="/orders" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'orders' else '' }}"><i class="fa-solid fa-box"></i>Manage Orders</a></li>
+          <li><a href="/" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'products' else '' }}"><i class="fa-solid fa-boxes-stacked"></i>Products</a></li>
+          <li><a href="/" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'accounts' else '' }}"><i class="fa-solid fa-users"></i>Manage Accounts</a></li>
+          <li><a href="/" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'add_account' else '' }}"><i class="fa-solid fa-user-plus"></i>Add Account</a></li>
+      </ul>
+  </li>
+  <li class="links__bottom">
+      <ul>
+          <li><a href="/" class="dashboard__link"><i class="fa-solid fa-shop"></i>Back to Shop</a></li>
+          <li><a href="/logout" class="dashboard__link"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a></li>
+      </ul>
+  </li>
+</ul>

@@ -1,0 +1,18 @@
+.dashboard__body {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard__left {
+  background-color: #fff;
+  width: 15%;
+  height: 100vh;
+  padding: 20px 0;
+}
+
+
+.dashboard__right {
+  background-color: #f3f3f3;
+  width: 85%;
+  /* height: 100px; */
+}

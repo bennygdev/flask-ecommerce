@@ -3,10 +3,11 @@ from flask_login import login_required, current_user
 
 dashboard = Blueprint('dashboard', __name__)
 
-@dashboard.route('/dashboard')
+# changed from dashboard to overview
+@dashboard.route('/overview')
 @login_required
-def dashboard_view(): # not dashboard for now, name conflict or may need a better name
-  return render_template("dashboard/dashboard.html", user=current_user)
+def overview():
+  return render_template("dashboard/overview.html", user=current_user)
 
 @dashboard.route('/profile')
 @login_required

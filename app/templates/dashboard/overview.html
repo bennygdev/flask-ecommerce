@@ -1,0 +1,17 @@
+{% extends "dashboard/dashboard.html" %}
+{% set active_page = "overview" %}
+{% block title %}Overview{% endblock %}
+
+
+{% block content %}
+<!-- Need to add logic here, to check if the user is customer, admin or owner -->
+
+{% block userOverview %}
+<!-- Probably have to do a include block. -->
+{% endblock %}
+
+<!-- method of checking here -->
+<!-- {{ user.role_id }} -->
+<h1>Dashboard overview</h1>
+
+{% endblock %}
