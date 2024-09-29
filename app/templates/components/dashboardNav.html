@@ -5,11 +5,11 @@
           <li><a href="/profile" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'profile' else '' }}"><i class="fa-solid fa-user"></i>My Profile</a></li>
           <li><a href="/orders" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'orders' else '' }}"><i class="fa-solid fa-box"></i>Manage Orders</a></li>
           {% if user.role_id in [2, 3] %}
-          <li><a href="/" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'products' else '' }}"><i class="fa-solid fa-boxes-stacked"></i>Products</a></li>
-          <li><a href="/" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'accounts' else '' }}"><i class="fa-solid fa-users"></i>Manage Accounts</a></li>
+          <li><a href="/manage-products" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'products' else '' }}"><i class="fa-solid fa-boxes-stacked"></i>Products</a></li>
+          <li><a href="/manage-accounts" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'accounts' else '' }}"><i class="fa-solid fa-users"></i>Manage Accounts</a></li>
           {% endif %}
           {% if user.role_id == 3 %}
-          <li><a href="/" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'add_account' else '' }}"><i class="fa-solid fa-user-plus"></i>Add Account</a></li>
+          <li><a href="/add-account" class="dashboard__link {{ 'dashboard__link--active' if active_page == 'add_account' else '' }}"><i class="fa-solid fa-user-plus"></i>Add Account</a></li>
           {% endif %}
       </ul>
   </li>

@@ -36,10 +36,18 @@ def create_app():
   def load_user(id):
     return User.query.get(int(id))
   
-  # 404 handler
+  # 404, 403, 401 handler
   @app.errorhandler(404)
   def page_not_found(e):
     return render_template('404.html', user=current_user), 404
+  
+  @app.errorhandler(403)
+  def forbidden(e):
+    return render_template('403.html', user=current_user), 403
+
+  @app.errorhandler(401)
+  def unauthorized(e):
+    return render_template('401.html', user=current_user), 401
   
   return app
 
