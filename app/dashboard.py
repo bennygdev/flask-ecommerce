@@ -18,3 +18,7 @@ def profile():
 @login_required
 def orders():
   return render_template("dashboard/orders.html", user=current_user)
+
+# Please make sure to restrict access to customers for this page
+
+# Please make sure to restrict access to customers and admins for this page

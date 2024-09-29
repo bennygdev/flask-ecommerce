@@ -8,6 +8,12 @@
 
 {% block userOverview %}
 <!-- Probably have to do a include block. -->
+{% if user.role_id == 1 %}
+{% include "dashboard/customer_overview.html" %}
+{% elif user.role_id in [2, 3] %}
+{% include "dashboard/admin_overview.html" %}
+{% endif %}
+
 {% endblock %}
 
 <!-- method of checking here -->

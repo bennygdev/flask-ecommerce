@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: inherit;
+  /* height: inherit; */ /* its because of this inherit thing that is why its not border box effect anymore. pls fix this later. */
+  height: 93vh;
 }
 
 .dashboard__links ul {
@@ -45,5 +46,5 @@
 }
 
 .links__bottom {
-  padding-bottom: 25px;
+  padding-bottom: 10px;
 }
