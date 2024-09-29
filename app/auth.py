@@ -33,7 +33,7 @@ def login():
       return redirect(url_for('auth.login'))
 
 
-  return render_template("login.html", user=current_user)
+  return render_template("auth/login.html", user=current_user)
 
 @auth.route('/logout')
 @login_required
@@ -81,5 +81,5 @@ def register():
       print('account created successfully')
       return redirect(url_for('views.home')) # redirect the user to login?
     
-  return render_template("register.html", user=current_user)
+  return render_template("auth/register.html", user=current_user)
 

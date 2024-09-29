@@ -22,9 +22,9 @@
       <ul class="nav__optionMenu--links">
         <!-- logged out -->
         {% if user.is_authenticated %}
-        <li><a class="nav__optionMenu--link" href="/">Your Profile</a></li>
-        <li><a class="nav__optionMenu--link" href="/">My Dashboard</a></li>
-        <li><a class="nav__optionMenu--link" href="/">My Orders</a></li>
+        <li><a class="nav__optionMenu--link" href="/profile">Your Profile</a></li>
+        <li><a class="nav__optionMenu--link" href="/dashboard">My Dashboard</a></li>
+        <li><a class="nav__optionMenu--link" href="/orders">My Orders</a></li>
         <li><a class="nav__optionMenu--link" href="/logout">Log Out</a></li>
         <!-- logged in -->
         {% else %}
@@ -50,9 +50,9 @@
       <li><a class='nav__link' href='/cart'>Cart (?)</a></li>
     </ul>
     <div class="offcanvas-nav__extra">
-      <a href="privacypolicy.html"><p>Privacy Policy</p></a>
-      <a href="termsofservice.html"><p>Terms of service</p></a>
-      <a href="license.html"><p>License</p></a>
+      <a href="/"><p>Privacy Policy</p></a>
+      <a href="/"><p>Terms of service</p></a>
+      <a href="/"><p>License</p></a>
       <p>&copy; Brand 2024</p>
     </div>
   </div>
