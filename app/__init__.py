@@ -3,9 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from werkzeug.security import generate_password_hash
 from flask_login import LoginManager, current_user
+from flask_wtf.csrf import CSRFProtect
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
+csrf = CSRFProtect()
 
 def create_app():
   app = Flask(__name__)

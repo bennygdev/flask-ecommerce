@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import db
 from .models import User
+from .forms import LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 
@@ -8,32 +9,20 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-  if request.method == 'POST':
-    emailUsername = request.form.get('emailUsername')
-    password = request.form.get('password')
-
-    # client side
-    if not emailUsername or not password:
-      flash('Invalid email or password', 'error')
-      return redirect(url_for('auth.login'))
-
+  form = LoginForm()
+  if form.validate_on_submit():
+    emailUsername = form.emailUsername.data
+    password = form.password.data
+        
     user = User.query.filter((User.email == emailUsername) | (User.username == emailUsername)).first()
 
-    # validation 
-    if user:
-      if check_password_hash(user.password, password):
-        print('Login success')
-        login_user(user, remember=True)
-        return redirect(url_for('views.home')) # do not redirect to dashboard for now
-      else:
-        flash('Invalid email or password', 'error')
-        return redirect(url_for('auth.login'))
+    if user and check_password_hash(user.password, password):
+      login_user(user, remember=True)
+      return redirect(url_for('views.home'))
     else:
-      flash('Invalid email or password', 'error')
-      return redirect(url_for('auth.login'))
+      form.password.errors.append('Invalid email or password')
 
-
-  return render_template("auth/login.html", user=current_user)
+  return render_template("auth/login.html", user=current_user, form=form)
 
 @auth.route('/logout')
 @login_required

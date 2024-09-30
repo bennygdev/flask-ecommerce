@@ -17,24 +17,24 @@
     <h1 id="login__header">Login</h1>
     <p id="login__subtitle">Welcome back!</p>
     <form method="POST" class="login__form">
+      {{ form.hidden_tag() }}
       <div class="login__email">
-        <label for="emailUsername">Email/Username</label>
-        <input type="text" name="emailUsername" id="emailUsername" placeholder="yourname@example.com">
-        <!-- <div class="error" id="emailError"></div> -->
+        {{ form.emailUsername.label }}
+        {{ form.emailUsername(class="form-control", placeholder="yourname@example.com") }}
       </div>
       <div class="login__password">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Your password">
-        <div class="error" id="passwordError">
-          {% for category, message in get_flashed_messages(with_categories=true) %}
-            {% if category == 'error' %}
-              {{ message }}
-            {% endif %}
+        {{ form.password.label }}
+        {{ form.password(class="form-control", placeholder="Your password") }}
+        {% if form.password.errors %}
+        <div class="error">
+          {% for error in form.password.errors %}
+            <span>{{ error }}</span>
           {% endfor %}
         </div>
+        {% endif %}
       </div>
       <p id="login__subtitle--reminder">Don't have an account? <a href="/register">Register</a></p>
-      <button type="submit" id="login__submit">Submit</button>
+      {{ form.submit(class="btn btn-primary") }}
     </form>
     
   </div>
