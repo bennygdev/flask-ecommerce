@@ -22,19 +22,36 @@ class Role(db.Model):
     role_name = db.Column(db.String(50), unique=True, nullable=False)
     users = db.relationship('User', backref='role', lazy=True)  # otm
 
+# class Product(db.Model):
+#     __tablename__ = 'products'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(200), nullable=False)
+#     description = db.Column(db.Text, nullable=True)
+#     price = db.Column(db.Numeric(10, 2), nullable=False)
+#     stock_quantity = db.Column(db.Integer, default=0)
+#     image_path = db.Column(db.String(300), nullable=True) 
+#     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
+#     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), onupdate=func.now())
+    
+#     categories = db.relationship('Category', secondary='product_categories', lazy='subquery', backref=db.backref('products', lazy=True)) # mtm category
+#     order_items = db.relationship('OrderItem', backref='product', lazy=True) # otm orderitems
 class Product(db.Model):
     __tablename__ = 'products'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
-    price = db.Column(db.Numeric(10, 2), nullable=False)
-    stock_quantity = db.Column(db.Integer, default=0)
-    image_path = db.Column(db.String(300), nullable=True) 
+    image_thumbnail = db.Column(db.String(300), nullable=True)
+    images = db.Column(db.JSON, nullable=True)  # For storing multiple images
+    variants = db.Column(db.JSON, nullable=True)  # For variants
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), onupdate=func.now())
     
-    categories = db.relationship('Category', secondary='product_categories', lazy='subquery', backref=db.backref('products', lazy=True)) # mtm category
-    order_items = db.relationship('OrderItem', backref='product', lazy=True) # otm orderitems
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)  # Foreign key to Category
+    category = db.relationship('Category', backref='products', lazy=True)  # Back reference for categories
+    
+    # Relationship to OrderItem
+    order_items = db.relationship('OrderItem', backref='product', lazy=True)  # One-to-many relationship with OrderItem
+
 
 class Order(db.Model):
     __tablename__ = 'orders'

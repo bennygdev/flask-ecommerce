@@ -60,7 +60,7 @@ def create_database(app):
       print('Created Database!')
       insert_default_roles()
       insert_users()
-      
+      insert_categories()
 
 def insert_default_roles():
   from .models import Role
@@ -118,3 +118,17 @@ def insert_users():
 
   db.session.commit()
   print('Inserted Admin and Owner accounts!')
+
+# insert product categories
+def insert_categories():
+  from .models import Category
+  categories = ['Guitar & Basses', 'Keyboards & Pianos', 'Drums & Percussion', 'Vocals & Microphones', 'Vinyl & Cassettes']
+
+  for category_name in categories:
+    category_exists = Category.query.filter_by(category_name=category_name).first()
+    if not category_exists:
+      new_category = Category(category_name=category_name)
+      db.session.add(new_category)
+    
+  db.session.commit()
+  print('Inserted product categories into the database!')
