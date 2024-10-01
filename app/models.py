@@ -41,16 +41,15 @@ class Product(db.Model):
     name = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
     image_thumbnail = db.Column(db.String(300), nullable=True)
-    images = db.Column(db.JSON, nullable=True)  # For storing multiple images
-    variants = db.Column(db.JSON, nullable=True)  # For variants
+    images = db.Column(db.JSON, nullable=True)  # list of uploaded images
+    variants = db.Column(db.JSON, nullable=True)  # store variants (name, price, stock)
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), onupdate=func.now())
     
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)  # Foreign key to Category
-    category = db.relationship('Category', backref='products', lazy=True)  # Back reference for categories
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False) 
+    category = db.relationship('Category', backref='products', lazy=True)  # backref categories
     
-    # Relationship to OrderItem
-    order_items = db.relationship('OrderItem', backref='product', lazy=True)  # One-to-many relationship with OrderItem
+    order_items = db.relationship('OrderItem', backref='product', lazy=True)  # otm orderItem
 
 
 class Order(db.Model):
