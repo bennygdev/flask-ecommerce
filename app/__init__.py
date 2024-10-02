@@ -4,6 +4,7 @@ from os import path
 from werkzeug.security import generate_password_hash
 from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CSRFProtect
+import json
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -51,6 +52,11 @@ def create_app():
   def unauthorized(e):
     return render_template('401.html', user=current_user), 401
   
+  # json filter for displaying list of products
+  @app.template_filter()
+  def fromjson(value):
+    return json.loads(value) if value else None
+
   return app
 
 def create_database(app):

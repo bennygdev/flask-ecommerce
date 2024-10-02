@@ -6,5 +6,44 @@
 {% block content %}
 
 <h1>Products</h1>
+<a href="/add-product">Add product</a>
+
+<div class="product-container">
+  {% for product in products %}
+    <div class="product-tile">
+      <h2>{{ product.name }}</h2>
+      <p>Category: {{ product.category.category_name if product.category else 'N/A' }}</p>
+      <p>Variants:</p>
+      <select>
+        {% set variants = product.variants | fromjson %} <!-- jsoncustomfilter -->
+              {% if variants %}
+          {% for variant in variants %}
+            <option value="{{ variant.title }}">{{ variant.title }} - Price: {{ variant.price }}, Stock: {{ variant.stock }}</option>
+          {% endfor %}
+              {% else %}
+          <option>No variants available.</option>
+        {% endif %}
+      </select>
+    </div>
+  {% else %}
+    <p>No products available.</p>
+  {% endfor %}
+</div>
+
+<!-- too lazy to add a css file -->
+<style>
+  .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+  }
+  .product-tile {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 200px; 
+      background-color: #f9f9f9;
+  }
+</style>
 
 {% endblock %}

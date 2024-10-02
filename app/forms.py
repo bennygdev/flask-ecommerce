@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, TextAreaField, FieldList, FormField
-from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
+from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional, NumberRange
 
 class LoginForm(FlaskForm):
   emailUsername = StringField('Email/Username', validators=[DataRequired()])
@@ -18,8 +18,8 @@ class RegisterForm(FlaskForm):
 
 class VariantForm(FlaskForm):
   title = StringField('Variant Title', validators=[DataRequired()])
-  price = IntegerField('Price', validators=[DataRequired()])
-  stock = IntegerField('Stock', validators=[DataRequired()])
+  price = IntegerField('Price', validators=[DataRequired(), NumberRange(min=0)])
+  stock = IntegerField('Stock', validators=[DataRequired(), NumberRange(min=0)])
 
 class ProductForm(FlaskForm):
   name = StringField('Product Name', validators=[DataRequired(), Length(max=200)])

@@ -1,0 +1,100 @@
+{% extends "dashboard/dashboard.html" %}
+{% set active_page = "products" %}
+{% block title %}Add Product{% endblock %}
+
+<!-- {% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/add_product.css') }}">
+{% endblock %} -->
+
+{% block content %}
+<div class="add-product__wrapper"></div>
+  <h1 id="add-product__header">Add Product</h1>
+  <form method="POST" class="add-product__form">
+    {{ form.hidden_tag() }}
+
+    <div class="add-product__name">
+      {{ form.name.label }}
+      {{ form.name(class="form-control", placeholder="Enter product name") }}
+    </div>
+    
+    <div class="add-product__description">
+      {{ form.description.label }}
+      {{ form.description(class="form-control", placeholder="Enter product description") }}
+    </div>
+    
+    <div class="add-product__image-thumbnail">
+      {{ form.image_thumbnail.label }}
+      {{ form.image_thumbnail(class="form-control", placeholder="Enter image thumbnail URL") }}
+    </div>
+    
+    <div class="add-product__images">
+      {{ form.images.label }}
+      {{ form.images(class="form-control", placeholder="Enter image URLs, separated by commas") }}
+    </div>
+
+    <div class="add-product__variants">
+      <h3>Variants</h3>
+      <div id="variant-container">
+        {% for variant in form.variants %}
+          <div class="variant">
+            {{ variant.hidden_tag() }}
+            <div class="variant-title">
+              {{ variant.title.label }}
+              {{ variant.title(class="form-control", placeholder="Enter variant title") }}
+            </div>
+            <div class="variant-price">
+              {{ variant.price.label }}
+              {{ variant.price(class="form-control", placeholder="Enter variant price") }}
+            </div>
+            <div class="variant-stock">
+              {{ variant.stock.label }}
+              {{ variant.stock(class="form-control", placeholder="Enter variant stock") }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <button type="button" id="add-variant" class="btn btn-secondary">Add Another Variant</button>
+    </div>
+
+    <div class="add-product__category">
+      {{ form.category_id.label }}
+      <select name="category_id" class="form-control">
+        <option value="">Select a Category</option>
+        <option value="1">Guitar & Basses</option>
+        <option value="2">Keyboards & Pianos</option>
+        <option value="3">Drums & Percussion</option>
+        <option value="4">Vocals & Microphones</option>
+        <option value="5">Vinyl & Cassettes</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Product</button>
+  </form>
+</div>
+
+<!-- too lazy to make a js file (but will add later) -->
+<script>
+  document.getElementById('add-variant').addEventListener('click', function() {
+    const container = document.getElementById('variant-container');
+    const variantIndex = container.children.length;
+    const variantHtml = `
+      <div class="variant">
+        {{ variant.hidden_tag() }}
+        <div class="variant-title">
+          <label for="variants-${variantIndex}-title">Variant Title</label>
+          <input type="text" name="variants-${variantIndex}-title" class="form-control" placeholder="Enter variant title">
+        </div>
+        <div class="variant-price">
+          <label for="variants-${variantIndex}-price">Price</label>
+          <input type="text" name="variants-${variantIndex}-price" class="form-control" placeholder="Enter variant price">
+        </div>
+        <div class="variant-stock">
+          <label for="variants-${variantIndex}-stock">Stock</label>
+          <input type="text" name="variants-${variantIndex}-stock" class="form-control" placeholder="Enter variant stock">
+        </div>
+      </div>`;
+    container.insertAdjacentHTML('beforeend', variantHtml);
+  });
+</script>
+
+{% endblock %}
