@@ -11,7 +11,9 @@
 <div class="product-container">
   {% for product in products %}
     <div class="product-tile">
+      <h1>{{ product.id }}</h1> <!-- debugging-->
       <h2>{{ product.name }}</h2>
+      <!-- <p>{{ product.description }}</p> -->
       <p>Category: {{ product.category.category_name if product.category else 'N/A' }}</p>
       <p>Variants:</p>
       <select>
@@ -24,6 +26,10 @@
           <option>No variants available.</option>
         {% endif %}
       </select>
+      <form action="{{ url_for('dashboard.delete_product', id=product.id) }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button>Delete product</button>
+      </form>
     </div>
   {% else %}
     <p>No products available.</p>

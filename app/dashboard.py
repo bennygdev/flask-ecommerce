@@ -79,6 +79,16 @@ def add_product():
     
   return render_template("dashboard/add_product.html", user=current_user, form=form)
 
+@dashboard.route('/delete-product/<int:id>', methods=['POST'])
+@login_required
+@role_required(2, 3)
+def delete_product(id):
+  product = Product.query.get_or_404(id)
+  db.session.delete(product)
+  db.session.commit()
+
+  return redirect(url_for('dashboard.manage_products'))
+
 @dashboard.route('/manage-accounts')
 @login_required
 @role_required(2, 3)

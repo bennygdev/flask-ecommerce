@@ -55,6 +55,7 @@
           <input type="text" name="username" id="username">
           <div class="error" id="usernameError"></div>
         </div>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <button type="submit" id="register__submit">Submit</button>
       </div>
     </form>
