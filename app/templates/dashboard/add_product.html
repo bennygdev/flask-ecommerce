@@ -37,7 +37,7 @@
       <div id="variant-container">
         {% for variant in form.variants %}
           <div class="variant">
-            {{ variant.hidden_tag() }}
+            {{ form.hidden_tag() }}
             <div class="variant-title">
               {{ variant.title.label }}
               {{ variant.title(class="form-control", placeholder="Enter variant title") }}
