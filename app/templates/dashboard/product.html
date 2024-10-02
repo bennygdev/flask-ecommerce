@@ -1,43 +1,42 @@
 {% extends "dashboard/dashboard.html" %}
 {% set active_page = "products" %}
-{% block title %}Add Product{% endblock %}
+{% block title %}Edit Product{% endblock %}
 
-{% block styles %}
+<!-- {% block styles %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/add_products.css') }}">
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
-<div class="add-product__wrapper"></div>
-  <h1 id="add-product__header">Add Product</h1>
-  <form method="POST" class="add-product__form">
+<div class="edit-product__wrapper"></div>
+  <h1 id="edit-product__header">Edit Product</h1>
+  <form method="POST" class="edit-product__form">
     {{ form.hidden_tag() }}
 
-    <div class="add-product__name">
+    <div class="edit-product__name">
       {{ form.name.label }}
       {{ form.name(class="form-control", placeholder="Enter product name") }}
     </div>
     
-    <div class="add-product__description">
+    <div class="edit-product__description">
       {{ form.description.label }}
       {{ form.description(class="form-control", placeholder="Enter product description") }}
     </div>
     
-    <div class="add-product__image-thumbnail">
+    <div class="edit-product__image-thumbnail">
       {{ form.image_thumbnail.label }}
       {{ form.image_thumbnail(class="form-control", placeholder="Enter image thumbnail URL") }}
     </div>
     
-    <div class="add-product__images">
+    <div class="edit-product__images">
       {{ form.images.label }}
       {{ form.images(class="form-control", placeholder="Enter image URLs, separated by commas") }}
     </div>
 
-    <div class="add-product__variants">
+    <div class="edit-product__variants">
       <h3>Variants</h3>
       <div id="variant-container">
         {% for variant in form.variants %}
-          <div class="variant">
-            {{ form.hidden_tag() }}
+          <div class="variant" id="variant-{{ loop.index0 }}">
             <div class="variant-title">
               {{ variant.title.label }}
               {{ variant.title(class="form-control", placeholder="Enter variant title") }}
@@ -50,35 +49,37 @@
               {{ variant.stock.label }}
               {{ variant.stock(class="form-control", placeholder="Enter variant stock") }}
             </div>
+            {% if not loop.first %}
+              <button type="button" class="btn btn-danger remove-variant" onclick="removeVariant({{ loop.index0 }})">Delete Variant</button>
+            {% endif %}
           </div>
         {% endfor %}
       </div>
-      <button type="button" id="add-variant" class="btn btn-secondary">Add Another Variant</button>
+      <button type="button" id="edit-variant" class="btn btn-secondary">Add Another Variant</button>
     </div>
 
-    <div class="add-product__category">
+    <div class="edit-product__category">
       {{ form.category_id.label }}
       <select name="category_id" class="form-control">
         <option value="">Select a Category</option>
-        <option value="1">Guitar & Basses</option>
-        <option value="2">Keyboards & Pianos</option>
-        <option value="3">Drums & Percussion</option>
-        <option value="4">Vocals & Microphones</option>
-        <option value="5">Vinyl & Cassettes</option>
+        <option value="1" {% if form.category_id.data == 1 %}selected{% endif %}>Guitar & Basses</option>
+        <option value="2" {% if form.category_id.data == 2 %}selected{% endif %}>Keyboards & Pianos</option>
+        <option value="3" {% if form.category_id.data == 3 %}selected{% endif %}>Drums & Percussion</option>
+        <option value="4" {% if form.category_id.data == 4 %}selected{% endif %}>Vocals & Microphones</option>
+        <option value="5" {% if form.category_id.data == 5 %}selected{% endif %}>Vinyl & Cassettes</option>
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary">Add Product</button>
+    <button type="submit" class="btn btn-primary">Edit Product</button>
   </form>
 </div>
 
 <script>
-  document.getElementById('add-variant').addEventListener('click', function() {
+  document.getElementById('edit-variant').addEventListener('click', function() {
     const container = document.getElementById('variant-container');
     const variantIndex = container.children.length;
     const variantHtml = `
       <div class="variant" id="variant-${variantIndex}">
-        {{ form.hidden_tag() }}
         <div class="variant-title">
           <label for="variants-${variantIndex}-title">Variant Title</label>
           <input type="text" name="variants-${variantIndex}-title" class="form-control" placeholder="Enter variant title">
@@ -91,7 +92,7 @@
           <label for="variants-${variantIndex}-stock">Stock</label>
           <input type="text" name="variants-${variantIndex}-stock" class="form-control" placeholder="Enter variant stock">
         </div>
-        <button type="button" class="btn btn-danger remove-variant" onclick="removeVariant(${variantIndex})">Remove Variant</button>
+        <button type="button" class="btn btn-danger remove-variant" onclick="removeVariant(${variantIndex})">Delete Variant</button>
       </div>`;
     container.insertAdjacentHTML('beforeend', variantHtml);
   });
@@ -103,5 +104,6 @@
     }
   }
 </script>
+
 
 {% endblock %}
