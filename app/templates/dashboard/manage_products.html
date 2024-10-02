@@ -1,5 +1,10 @@
 {% extends "dashboard/dashboard.html" %}
 {% set active_page = "products" %}
+
+{% block styles %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/manage_products.css') }}">
+{% endblock %}
+
 {% block title %}Manage Products{% endblock %} <!-- Change to "Manage orders" for admin and owner -->
 
 
@@ -35,21 +40,5 @@
     <p>No products available.</p>
   {% endfor %}
 </div>
-
-<!-- too lazy to add a css file -->
-<style>
-  .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-  }
-  .product-tile {
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 8px;
-      width: 200px; 
-      background-color: #f9f9f9;
-  }
-</style>
 
 {% endblock %}
