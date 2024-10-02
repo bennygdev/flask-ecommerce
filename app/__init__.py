@@ -15,6 +15,7 @@ def create_app():
   app.config['SECRET_KEY'] = '123456789'
   app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
   db.init_app(app)
+  csrf.init_app(app)
 
   # Initlaise routes
   from .views import views

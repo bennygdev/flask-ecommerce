@@ -72,14 +72,13 @@
   </form>
 </div>
 
-<!-- too lazy to make a js file (but will add later) -->
 <script>
   document.getElementById('add-variant').addEventListener('click', function() {
     const container = document.getElementById('variant-container');
     const variantIndex = container.children.length;
     const variantHtml = `
       <div class="variant">
-        {{ variant.hidden_tag() }}
+        {{ form.hidden_tag() }}
         <div class="variant-title">
           <label for="variants-${variantIndex}-title">Variant Title</label>
           <input type="text" name="variants-${variantIndex}-title" class="form-control" placeholder="Enter variant title">
