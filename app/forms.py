@@ -23,7 +23,7 @@ class VariantForm(FlaskForm):
 
 class ProductForm(FlaskForm):
   name = StringField('Product Name', validators=[DataRequired(), Length(max=200)])
-  description = TextAreaField('Description', validators=[Optional()])
+  description = TextAreaField('Description', validators=[DataRequired()])
   image_thumbnail = StringField('Image Thumbnail', validators=[Optional()])
   images = StringField('Images', validators=[Optional()])
   variants = FieldList(FormField(VariantForm), min_entries=1)  # 1 variant min

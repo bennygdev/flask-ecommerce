@@ -20,7 +20,8 @@ def login():
       login_user(user, remember=True)
       return redirect(url_for('views.home'))
     else:
-      form.password.errors.append('Invalid email or password')
+      # form.password.errors.append('Invalid email or password')
+      flash('Invalid email or password', 'error')
 
   return render_template("auth/login.html", user=current_user, form=form)
 
