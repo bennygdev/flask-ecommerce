@@ -3,6 +3,7 @@
 
 {% block styles %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/manage_products.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/modal.css') }}">
 {% endblock %}
 
 {% block title %}Manage Products{% endblock %} <!-- Change to "Manage orders" for admin and owner -->
@@ -31,15 +32,29 @@
           <option>No variants available.</option>
         {% endif %}
       </select>
-      <form action="{{ url_for('dashboard.delete_product', id=product.id) }}" method="POST">
+      <!-- <form action="{{ url_for('dashboard.delete_product', id=product.id) }}" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <button>Delete product</button>
+      </form> -->
+      <form id="deleteForm-{{ product.id }}" action="{{ url_for('dashboard.delete_product', id=product.id) }}" method="POST" onsubmit="event.preventDefault(); openDeleteModal({{ product.id }})">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="button" onclick="openDeleteModal({{ product.id }})">Delete product</button>
       </form>
+      
       <a href="{{ url_for('dashboard.product_details', id=product.id) }}"><button>Edit product</button></a>
+      
     </div>
   {% else %}
     <p>No products available.</p>
   {% endfor %}
 </div>
+
+<!-- Include the modal -->
+{% include "components/modal.html" %}
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/deleteProduct.js') }}"
+></script>
 
 {% endblock %}
